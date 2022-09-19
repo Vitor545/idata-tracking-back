@@ -30,7 +30,8 @@ export default class Tracking implements Itracking {
 		actual_k,
 		consultation_date,
 	}: any): Promise<void> => {
-		await this._connection.execute<RowDataPacket[]>(`
+		await this._connection.execute<RowDataPacket[]>(
+			`
       INSERT INTO trackingiDATA.tracking (
         awb,
         origin,
@@ -41,16 +42,18 @@ export default class Tracking implements Itracking {
         actual_p,
         actual_k,
         consultation_date
-        ) VALUES (
-          ${awb}, 
-          ${origin}, 
-          ${destination}, 
-          ${flight_no}, 
-          ${etd}, 
-          ${eta}, 
-          ${actual_p}, 
-          ${actual_k}, 
-          ${consultation_date}
-          )`);
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			[
+				awb,
+				origin,
+				destination,
+				flight_no,
+				etd,
+				eta,
+				actual_p,
+				actual_k,
+				consultation_date,
+			],
+		);
 	};
 }
