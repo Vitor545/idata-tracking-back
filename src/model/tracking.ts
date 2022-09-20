@@ -29,6 +29,7 @@ export default class Tracking implements Itracking {
 		actual_p,
 		actual_k,
 		consultation_date,
+		last_update,
 	}: any): Promise<void> => {
 		await this._connection.execute<RowDataPacket[]>(
 			`
@@ -41,8 +42,9 @@ export default class Tracking implements Itracking {
         eta,
         actual_p,
         actual_k,
-        consultation_date
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        consultation_date,
+				last_update
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 			[
 				awb,
 				origin,
@@ -53,6 +55,7 @@ export default class Tracking implements Itracking {
 				actual_p,
 				actual_k,
 				consultation_date,
+				last_update,
 			],
 		);
 	};
