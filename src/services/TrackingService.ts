@@ -29,6 +29,9 @@ export default class TrackingService {
 			}
 
 			const getOrigin = document.querySelector('#shipment_origin')?.innerHTML;
+			const getStatus = document.querySelectorAll('tbody.stripeTableBlue > tr > [titledata="Description"]');
+			const getStatusArray = [...getStatus];
+			const getStatusFinal = getStatusArray.map(el => el.innerHTML)[0];
 			const getDestination = document.querySelector(
 				'#shipment_destination',
 			)?.innerHTML;
@@ -49,6 +52,7 @@ export default class TrackingService {
 				eta: getEta,
 				actual_p: getPieces,
 				actual_k: getWeight,
+				last_update: getStatusFinal,
 			};
 			return final;
 		});
