@@ -19,6 +19,14 @@ export default class Tracking implements Itracking {
 		return result;
 	};
 
+	getTrackingById = async (id: string): Promise<any> => {
+		const [result] = await this._connection.execute<RowDataPacket[]>(
+			'SELECT * FROM trackingiDATA.tracking where awb = ?',
+			[id],
+		);
+		return result;
+	};
+
 	searchTracking = async ({
 		awb,
 		origin,
@@ -30,6 +38,7 @@ export default class Tracking implements Itracking {
 		actual_k,
 		consultation_date,
 		last_update,
+		type_company,
 	}: any): Promise<void> => {
 		await this._connection.execute<RowDataPacket[]>(
 			`
@@ -43,8 +52,9 @@ export default class Tracking implements Itracking {
         actual_p,
         actual_k,
         consultation_date,
-				last_update
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+				last_update,
+				type_company
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 			[
 				awb,
 				origin,
@@ -56,6 +66,7 @@ export default class Tracking implements Itracking {
 				actual_k,
 				consultation_date,
 				last_update,
+				type_company,
 			],
 		);
 	};

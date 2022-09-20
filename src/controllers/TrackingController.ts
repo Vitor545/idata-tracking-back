@@ -30,12 +30,27 @@ export default class TrackingController {
 	}
 
 	public async getTracking(
-		req: Request,
+		_req: Request,
 		res: Response,
 		next: NextFunction,
 	): Promise<any> {
 		try {
 			const getTracking = await this._trackingService.getTracking();
+
+			return res.status(200).json(getTracking);
+		} catch (err: unknown) {
+			next(err);
+		}
+	}
+
+	public async getTrackingById(
+		req: Request,
+		res: Response,
+		next: NextFunction,
+	): Promise<any> {
+		try {
+			const {id} = req.params;
+			const getTracking = await this._trackingService.getTrackingById(id);
 
 			return res.status(200).json(getTracking);
 		} catch (err: unknown) {
