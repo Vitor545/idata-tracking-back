@@ -20,5 +20,6 @@ export default class TrackingRoute {
 		const controller = this._trackingController;
 		this._route.post('/', controller.searchAwb.bind(controller));
 		this._route.get('/', controller.getTracking.bind(controller));
+		this._route.get('/:id', controller.getTrackingById.bind(controller));
 	}
 }
