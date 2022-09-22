@@ -15,7 +15,7 @@ CREATE TABLE trackingiDATA.tracking (
   eta TEXT NOT NULL,
   actual_p TEXT NOT NULL,
   actual_k TEXT NOT NULL,
-  consultation_date DATE NOT NULL,
+  consultation_date TEXT NOT NULL,
   last_update TEXT NOT NULL,
   type_company TEXT NOT NULL
 );
