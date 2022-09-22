@@ -9,7 +9,13 @@ import {latamCrawler, unitedCrawler} from '../helpers/Crawler';
 export default class TrackingService {
 	private readonly _trackingModel = new Tracking(connection);
 	async create(prefix: string, number: string) {
-		const consultation_date = new Date(Date.now());
+		const dataF = new Date();
+		const dia = dataF.getDate();
+		const mes = dataF.getMonth();
+		const ano4 = dataF.getFullYear();
+		const hora = dataF.getHours();
+		const min = dataF.getMinutes() < 10 ? `0${dataF.getMinutes()}` : dataF.getMinutes();
+		const consultation_date = `${dia}/${(mes + 1)}/${ano4} ${hora}:${min}`;
 		const awb = prefix + number;
 		const type_company = prefix === '016' ? 'UNITED' : 'LATAM';
 		let valueFinal;
