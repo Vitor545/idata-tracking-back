@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'src/tests/**/*.ts' --timeout 30000",
     "predev": "npx tsc",
     "dev": "ts-node-dev --respawn --ignore-watch node_modules src/server.ts"
   },
